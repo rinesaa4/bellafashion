@@ -15,12 +15,16 @@ console.log("DB CONFIG:", {
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "http://localhost:5174"
-  ]
+  origin: allowedOrigins
 }));
+
 app.use(express.json());
 
 const db = mysql.createPool({
@@ -165,7 +169,7 @@ console.log("Generated order ID:", orderId);
 
     res.status(201).json({
       message: "Order saved successfully",
-      orderId: order.insertId,
+      orderId: orderId,
     });
   } catch (error) {
     await connection.rollback();

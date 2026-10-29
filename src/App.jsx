@@ -7,7 +7,11 @@ import { img1_1, img1_2, img1_3,
   img5_1, img5_2, img5_3,
   img6_1, img6_2, img6_3, img6_4} from './img/img_src.js';
 
-const API_URL = "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_URL;
+
+if (!API_URL) {
+  throw new Error("VITE_API_URL is not configured");
+}
 
 
 const products = [
@@ -464,10 +468,12 @@ function App() {
     setCart((current) => current.filter((item) => !(item.id === target.id && item.color === target.color && item.size === target.size)));
   }
 
-   async function placeOrder(form) {
-  const response = await fetch(
-    `${API_URL}/api/orders`, 
-    {
+   
+async function placeOrder(form) {
+  let response;
+
+  try {
+    response = await fetch(`${API_URL}/api/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -483,20 +489,25 @@ function App() {
           size: item.size,
         })),
       }),
-    }
-  );
+    });
+  } catch (error) {
+    throw new Error(
+      "Cannot connect to the server. Check the API URL and backend status."
+    );
+  }
 
-  const result = await response.json();
+  const result = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(result.message || "Order failed");
+    throw new Error(
+      result.message || `Order failed (${response.status})`
+    );
   }
 
   setOrderPlaced(true);
   setCart([]);
   setPage("success");
 }
- 
   function goHome() {
     setPage("home");
     setOrderPlaced(false);
