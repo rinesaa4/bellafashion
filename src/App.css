@@ -48,7 +48,7 @@ a { color: inherit; }
 .product-card { min-width: 0; padding: 0 0 13px; border: 0; background: #fff; text-align: left; position: relative; }
 .product-card img { display: block; width: 100%; aspect-ratio: 3 / 3.7; object-fit: cover; background: #eee; transition: filter .2s; }
 .product-card:hover img { filter: brightness(.94); }
-.product-card-name { display: block; color: var(--pink-dark); font-family: "Italianno", cursive; font-size: 25px; padding: 11px 10px 0; }
+.product-card-name { display: block; color: var(--pink-dark); font-family: "Fahkwang", cursive; font-size: 25px; padding: 11px 10px 0; }
 .product-card-price { display: block; font-size: 12px; padding: 0 10px; color: #625b5e; }
 .site-footer { background: #fff7f8; text-align: center; padding: 36px 20px; color: #8a7d82; }
 .footer-logo { display: inline-block; font-size: 37px; }
