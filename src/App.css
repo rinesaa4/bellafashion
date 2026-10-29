@@ -116,7 +116,7 @@ a { color: inherit; }
   .section-heading { align-items: start; flex-direction: column; gap: 4px; }
   .section-note { margin: 0; }
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
-  .product-card-name { font-size: 20px; padding-left: 4px; letter-spacing: 5%; }
+  .product-card-name { font-size: 11px; padding-left: 4px; letter-spacing: 5%; }
   .product-card-price { padding-left: 4px; }
   .detail-page, .content-page { padding: 24px 18px 55px; }
   .detail-layout { grid-template-columns: 1fr; gap: 28px; }
